@@ -4,7 +4,9 @@ import pyowm
 import json  
 
 app = Flask(__name__)  
-owm = pyowm.OWM(str(os.getenv('WEATHER_KEY')))
+
+"""Set the env key for the weather key using cf set-env <app> <keyname> <keyval>"""
+owm = pyowm.OWM(str(os.getenv('WEATHER_KEY'))) 
 def getWeather(city):
    """Abstracts out getting weather. Pass it the city name"""
    observation = owm.weather_at_place(city)
