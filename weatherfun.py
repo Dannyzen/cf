@@ -6,21 +6,24 @@ import json
 app = Flask(__name__)  
 owm = pyowm.OWM('51c9bc8baaaa942e5b88971674a0869c')
 def getWeather(city):
+   """Abstracts out getting weather. Pass it the city name"""
    observation = owm.weather_at_place(city)
    return observation.get_weather()
 def getTemperature(city):
+   """Abstracts out getting temperature. Pass it the city name"""
    weather = getWeather(city)
    return weather.get_temperature('fahrenheit')
 def getDetailedWeather(city):
+   """Abstracts out getting detailed weather. Pass it the city name"""
    weather = getWeather(city)
    return weather.get_detailed_status()
 @app.route('/')  
 def index():  
    return redirect('/weather/NYC')  
 @app.route('/weather/<city>')  
-def weather(city):  
+def renderWeatherPage(city):  
+   """Renders the weather page. hit <url>/weather/<city> to get the weather for that city"""
    temp = getTemperature(city)
-   print temp['temp']
    page='<title>current weather for '+city+'</title>'  
    page +='<h1><u>Current weather for '+city+'</u></h1>'  
    page +='<br/>Current Temp. '+str(temp['temp'])+'<br/>'  
