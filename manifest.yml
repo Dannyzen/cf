@@ -1,4 +1,5 @@
 applications:
-- name: apperstein
+- name: weather
   buildpack: https://github.com/cloudfoundry/python-buildpack
-  command: python apperstein.py
+  random-route: true
+  command: python weatherfun.py
