@@ -1,0 +1,4 @@
+applications:
+- name: apperstein
+  buildpack: https://github.com/cloudfoundry/python-buildpack
+  command: python apperstein.py
